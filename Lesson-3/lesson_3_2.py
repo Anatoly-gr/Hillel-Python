@@ -7,7 +7,10 @@ import math
 
 number = float(input('Введите число с двумя знаками после запятой '))
 kort = math.modf(number)
-print('дробная часть введеного числа ', round(kort[0], 2))
+drob = str(round(kort[0], 2))
+print('дробная часть введеного числа ',  drob)
+somelist = list(drob)
+print('Первая цифра после десятичной точки ', list(drob)[2])
 
 # print(a_tuple)
 # numbers = tuple(number)
