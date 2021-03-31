@@ -1,9 +1,12 @@
 # 1. Пользователь вводит трехзначное число. Найдите сумму его цифр.
 #
-number = (input('Ведите трехзначное число '))
+number = (input('Ведите число '))
 numbers = list(number)
-print(numbers)
-print(type(number))
+some_list = []
+# print(numbers)
+# print(type(number))
 for number in numbers:
     number = int(number)
-    print(type(number))
+    some_list.append(number)
+    # print(type(number))
+print('сумма цифр введеного числа ', sum(some_list))
