@@ -18,6 +18,10 @@
 #
 # - определите, сколько элементов этой последовательности равны ее наибольшему элементу
 
+from functools import reduce
+# def max_numb (some_list())
+
+
 some_number = int(input("введите целое число "))
 some_list = list()
 some_list.append(some_number)
@@ -29,6 +33,7 @@ some_list.remove(-0)
 print(some_list)
 print('Количество введенных чисел ', len(some_list))
 print('сумма введенных чисел = ', sum(some_list))
-
-from functools import reduce
 print('произведение введенных чисел = ', reduce(lambda x, y: x * y, some_list))
+print('средне арифметическое значение введенных чисел = ', sum(some_list) / len(some_list))
+print('Значение максимального элемента = ', max(some_list), 'Индекс максимального элемента',
+      some_list.index(max(some_list)))
