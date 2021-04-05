@@ -18,9 +18,10 @@
 #
 # - определите, сколько элементов этой последовательности равны ее наибольшему элементу
 
-from functools import reduce
+# from functools import reduce
 # def max_numb (some_list())
-
+import functools
+import operator
 
 some_number = int(input("введите целое число "))
 some_list = list()
@@ -33,7 +34,18 @@ some_list.remove(-0)
 print(some_list)
 print('Количество введенных чисел ', len(some_list))
 print('сумма введенных чисел = ', sum(some_list))
-print('произведение введенных чисел = ', reduce(lambda x, y: x * y, some_list))
+print('произведение введенных чисел = ', functools.reduce(operator.mul, some_list))
 print('средне арифметическое значение введенных чисел = ', sum(some_list) / len(some_list))
 print('Значение максимального элемента = ', max(some_list), 'Индекс максимального элемента',
       some_list.index(max(some_list)))
+print('Кол-во элементов последовательности равных максимальному элементу ', some_list.count(max(some_list)))
+new_list = list()
+for element in some_list:
+    if element % 2 == 0:
+        new_list.append(element)
+    elif element < max(some_list):
+        print('второй элемен', element)
+print('Количество четных элементов списка', len(new_list))
+print('Количество нечетных элементов списка', len(some_list) - len(new_list))
+# second_number = max(some_list)
+# print(second_number)
