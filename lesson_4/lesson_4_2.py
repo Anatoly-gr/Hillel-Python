@@ -18,8 +18,7 @@
 #
 # - определите, сколько элементов этой последовательности равны ее наибольшему элементу
 
-# from functools import reduce
-# def max_numb (some_list())
+
 import functools
 import operator
 
@@ -43,9 +42,11 @@ new_list = list()
 for element in some_list:
     if element % 2 == 0:
         new_list.append(element)
-    elif element < max(some_list):
-        print('второй элемен', element)
 print('Количество четных элементов списка', len(new_list))
 print('Количество нечетных элементов списка', len(some_list) - len(new_list))
-# second_number = max(some_list)
-# print(second_number)
+second_max = int(0)
+i = 0
+for i in some_list:
+    if max(some_list) > i >= second_max:
+        second_max = i
+print('Значение второго по величине элемента = ', second_max)
