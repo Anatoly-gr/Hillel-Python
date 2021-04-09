@@ -3,4 +3,4 @@
 words = str(input("Введите несколько слов "))
 new_list = words.split()
 print('Количество введенных слов', len(new_list))
-print('Количество введенных слов ', words.count('') - 1)
+print('Количество введенных знаков ', words.count('') - 1)
