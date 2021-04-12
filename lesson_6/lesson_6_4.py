@@ -4,6 +4,7 @@
 # Базовый кейс - вернет количество секунд.
 #    * доп. усложнение вернуть в виде строки часы:минуты:секунды,
 #    прим. '0:41:39' (datetime.timedelta)
+import datetime
 import json
 
 with open('acdc.json', 'r+') as file:
@@ -20,4 +21,4 @@ for track in list_tracks:
         if key == 'duration':
             track[key] = int(track[key])
             dur.append(track[key])
-print('длина треков', sum(dur))
+print('длина треков', datetime.timedelta(0, sum(dur)))
