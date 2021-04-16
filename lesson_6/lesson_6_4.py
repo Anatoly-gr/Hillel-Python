@@ -9,16 +9,8 @@ import json
 
 with open('acdc.json', 'r+') as file:
     some_dict = (json.load(file))
-some_dict_tracks = (some_dict['album']['tracks'])  # извлечение первого элемента со списка
-list_tracks = some_dict_tracks['track']
-print(list_tracks)
-# print(type(list_tracks))
-# print(len(list_tracks))
-dur = []
-for track in list_tracks:
-    # print(type(track))
-    for key in track:
-        if key == 'duration':
-            track[key] = int(track[key])
-            dur.append(track[key])
-print('длина треков', datetime.timedelta(0, sum(dur)))
+    durations = some_dict['album']['tracks']['track']  # извлечение первого элемента со списка
+    dur = [int(duration['duration']) for duration in durations]
+    print(sum(dur))
+
+print(datetime.timedelta(0, sum(dur)))
