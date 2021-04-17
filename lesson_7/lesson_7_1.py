@@ -10,7 +10,7 @@ def some_deco(func):
 
 @some_deco
 def str_func():
-    return str(input('Input string: '))
+    return str(input('Enter string: '))
 
 
 str_func()
