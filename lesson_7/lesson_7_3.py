@@ -2,17 +2,22 @@
 import urllib.request
 import json
 from datetime import datetime
+import requests
 
-url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=odesa&cnt=5&units=metric&appid=f9ada9efec6a3934dad5f30068fdcbb8"
-request = urllib.request.urlopen(url)
+city = input('enter yor city: ')
+num_day = int(input('enter number days: '))
+api_id = 'f9ada9efec6a3934dad5f30068fdcbb8'
+url = "http://api.openweathermap.org/data/2.5/forecast/daily?"
+payload = {'q': city, 'cnt': num_day, 'units': 'metric', 'appid': api_id}
+r = requests.get(url, params=payload)
+request = urllib.request.urlopen(r.url)
 data = json.load(request)
 print(data)
 new_list = data['list']
-with open('19-04-2021-Odessa-5-days-weather-forecast.txt', 'r+') as file:
-    for i in [0, 1, 2, 3, 4]:
+with open(f'19-04-2021-{city}-{num_day}-days-weather-forecast.txt', 'w') as file:
+    file.write(f'Дата          Темп. днем   Темп. ночью   По ощущениям, \n')
+    for i in range(num_day):
         new_dict = new_list[i]
         dt_data = new_dict['dt']
-        print(f'{datetime.fromtimestamp(dt_data).strftime("%d-%m-%Y")}, {new_dict["temp"]["day"]}, '
-              f'{new_dict["temp"]["night"]}, {new_dict["feels_like"]["day"]}')
-        file.write(f'\n {datetime.fromtimestamp(dt_data).strftime("%d-%m-%Y")}, {new_dict["temp"]["day"]}, '
-                   f'{new_dict["temp"]["night"]}, {new_dict["feels_like"]["day"]}, \n')
+        file.write(f'{datetime.fromtimestamp(dt_data).strftime("%d-%m-%Y")},   {new_dict["temp"]["day"]}, '
+                   f'       {new_dict["temp"]["night"]},        {new_dict["feels_like"]["day"]}, \n')
