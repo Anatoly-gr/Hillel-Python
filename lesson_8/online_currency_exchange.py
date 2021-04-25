@@ -15,8 +15,8 @@ try:
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     if start_date > datetime.today():
         start_date = today
-except:
-    ValueError(print('You entered is incorrected date'))
+except ValueError as err:
+    print('You entered is incorrect date', err)
     start_date = today
 
 with open('symbols.json', 'r+') as file:
