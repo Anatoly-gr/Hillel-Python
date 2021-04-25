@@ -1,3 +1,4 @@
+import argparse
 from datetime import timedelta
 from datetime import datetime
 import json
@@ -7,11 +8,17 @@ import requests
 currency_from = str(input('Введите тип валюты from: '))
 currency_to = str(input('Введите тип валюты для конвертации to: '))
 amount = float(input('введите сумму для конвертации: '))
-start_date = str(input('Введите дату: '))
-start_date = datetime.strptime(start_date, '%Y-%m-%d')
+start_date = str(input('Введите дату в формате YYYY-mm-dd: '))
 today = datetime.today()
-if start_date > today:
+
+try:
+    start_date = datetime.strptime(start_date, '%Y-%m-%d')
+    if start_date > datetime.today():
+        start_date = today
+except:
+    ValueError(print('You entered is incorrected date'))
     start_date = today
+
 with open('symbols.json', 'r+') as file:
     cur_dict = (json.load(file))
     currency_to = currency_to.upper()
@@ -32,3 +39,9 @@ with open('symbols.json', 'r+') as file:
             start_date += timedelta(days=1)
     else:
         print('Wrong type of currency')
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Currency exchange')
+    parser.add_argument('currency_from')
+    parser.add_argument('currency_to')
+    args = parser.parse_args()
